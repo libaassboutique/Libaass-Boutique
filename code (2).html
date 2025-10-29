@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libaass Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fefefe;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #d4a574; /* Gold */
+        }
+        a {
+            text-decoration: none;
+            color: #d4a574;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        header {
+            background-color: #f8e8e8; /* Pastel pink */
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d4a574;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links li a {
+            color: #333;
+            font-weight: 400;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 3px 0;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #f8e8e8, #f5f5dc); /* Pink to beige */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #d4a574;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #b8955a;
+        }
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        .featured-carousel {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-item {
+            min-width: 100%;
+            transition: transform 0.5s;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .specialties {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .specialty {
+            text-align: center;
+            width: 30%;
+            margin: 20px 0;
+        }
+        /* Services (Updated from Products based on user input) */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .service-card h3 {
+            padding: 15px;
+            margin: 0;
+        }
+        .service-card p {
+            padding: 0 15px;
+        }
+        .service-card .btn {
+            margin: 15px;
+        }
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        /* Contact */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #d4a574;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* Footer */
+        footer {
+            background-color: #f8e8e8;
+            text-align: center;
+            padding: 20px 0;
+        }
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .social-icons a {
+            font-size: 24px;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #f8e8e8;
+                width: 200px;
+                padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .specialty {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Libaass Boutique</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container" data-aos="fade-up">
+            <h1>Libaass Boutique</h1>
+            <p>Elegance Stitched to Perfection</p>
+            <a href="#collections" class="btn">View Collection</a>
+            <a href="#contact" class="btn">Book Appointment</a>
+        </div>
+    </section>
+
+    <section id="featured" class="container" data-aos="fade-up">
+        <h2>Featured Collection</h2>
+        <div class="featured-carousel">
+            <div class="carousel-item">
+                <img src="https://source.unsplash.com/800x400/?wedding-dress" alt="Featured Dress">
+            </div>
+            <div class="carousel-item">
+                <img src="https://source.unsplash.com/800x400/?ethnic-wear" alt="Ethnic Wear">
+            </div>
+            <div class="carousel-item">
+                <img src="https://source.unsplash.com/800x400/?designer-suit" alt="Designer Suit">
+            </div>
+        </div>
+    </section>
+
+    <section id="specialties" class="container" data-aos="fade-up">
+        <h2>Our Specialties</h2>
+        <div class="specialties">
+            <div class="specialty">
+                <h3>Ladies’ Suits</h3>
+                <p>Premium quality suits tailored to perfection.</p>
+            </div>
+            <div class="specialty">
+                <h3>Ethnic Wear</h3>
+                <p>Elegant designs for traditional occasions.</p>
+            </div>
+            <div class="specialty">
+                <h3>Custom Stitching</h3>
+                <p>Personalized tailoring services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="instagram" class="container" data-aos="fade-up">
+        <h2>Follow Us on Instagram</h2>
+        <div class="gallery-grid">
+            <img src="https://source.unsplash.com/250x250/?boutique" alt="Instagram Post">
+            <img src="https://source.unsplash.com/250x250/?fashion" alt="Instagram Post">
+            <img src="https://source.unsplash.com/250x250/?dress" alt="Instagram Post">
+            <img src="https://source.unsplash.com/250x250/?suit" alt="Instagram Post">
+        </div>
+    </section>
+
+    <section id="about" class="container" data-aos="fade-up">
+        <h2>About Us</h2>
+        <p>Libaass Boutique was founded by LEENA SHARMA with a passion for creating elegant, high-quality garments. Our story began in Moga, where we started offering custom stitching services that blend tradition with modern design.</p>
+        <p><strong>Mission:</strong> To provide premium ladies’ wear that empowers women to feel confident and beautiful.</p>
+        <p><strong>Tailoring Philosophy:</strong> Every stitch is made with care, ensuring personalized fits and timeless elegance.</p>
+    </section>
+
+    <section id="collections" class="container" data-aos="fade-up">
+        <h2>Services</h2>
+        <div class="filters">
+            <button onclick="filterServices('all')">All</button>
+            <button onclick="filterServices('party')">Party Wear</button>
+            <button onclick="filterServices('casual')">Casual</button>
+            <button onclick="filterServices('bridal')">Bridal</button>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" data-category="party">
+                <img src="https://source.unsplash.com/300x250/?party-dress" alt="Party Dress Service">
+                <h3>Party Wear Stitching</h3>
+                <p>Custom stitching for elegant party wear.</p>
+                <a href="#contact" class="btn">Enquire Now</a>
+            </div>
+            <div class="service-card" data-category="casual">
+                <img src="https://source.unsplash.com/300x250/?casual-dress" alt="Casual Dress Service">
+                <h3>Casual Wear Stitching</h3>
+                <p>Comfortable and stylish casual wear services.</p>
+                <a href="#contact" class="btn">Enquire Now</a>
+            </div>
+            <div class="service-card" data-category="bridal">
+                <img src="https://source.unsplash.com/300x250/?bridal-suit" alt="Bridal Suit Service">
+                <h3>Bridal Wear Stitching</h3>
+                <p>Stunning bridal ensembles tailored to perfection.</p>
+                <a href="#contact" class="btn">Enquire Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="container" data-aos="fade-up">
+        <h2>Gallery</h2>
+        <div class="gallery-grid">
+            <img src="https://source.unsplash.com/250x250/?stitched-suit" alt="Stitched Suit">
+            <img src="https://source.unsplash.com/250x250/?customer-design" alt="Customer Design">
+            <img src="https://source.unsplash.com/250x250/?boutique-gallery" alt="Gallery Image">
+            <img src="https://source.unsplash.com/250x250/?fashion-show" alt="Fashion Show">
+        </div>
+    </section>
+
+    <section id="contact" class="container" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <p><strong>Address:</strong> Shop 1, Geeta Bhawan Chowk, Opp. DM College, Moga - 142001</p>
+        <p><strong>Phone:</strong> +91 7589021721</p>
+        <p><strong>WhatsApp:</strong> <a href="https://wa.me/917589021721">Chat Now</a></p>
+        <iframe src="https://maps.app.goo.gl/UAByPM5V2z48uXSJ8?g_st=ic" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <form class="contact-form">
+            <input type="text" placeholder="Name" required>
+            <input type="tel" placeholder="Phone" required>
+            <textarea placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/libaass_boutique.official?igsh=MW1pcHhncHdlNHY5Ng%3D%3D&utm_source=qr" target="_blank">📷 Instagram</a>
+            <a href="https://facebook.com/libaassboutique" target="_blank">📘 Facebook</a>
+        </div>
+        <p>&copy; 2025 Libaass Boutique. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/917589021721" class="whatsapp-float" target="_blank">💬</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        function filterServices(category) {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Simple carousel logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        setInterval(() => {
+            slides[currentSlide].style.transform = 'translateX(-100%)';
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].style.transform = 'translateX(0)';
+        }, 3000);
+    </script>
+</body>
+</html>
